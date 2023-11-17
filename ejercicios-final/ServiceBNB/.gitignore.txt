@@ -1,0 +1,28 @@
+# Archivos generados automáticamente por el IDE
+*.obj
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.sdf
+*.ipch
+*.pch
+
+# Archivos temporales
+*.tmp
+*.log
+*.bak
+*~
+
+# Archivos de configuración
+Web.config
+app.config
+
+# Archivos de recursos
+*.jpg
+*.png
+*.gif
+*.wav
+*.mp3
+*.avi
+*.mp4
