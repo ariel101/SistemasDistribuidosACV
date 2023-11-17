@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
+use App\Models\Cuenta;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class CuentaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,6 @@ class ClienteController extends Controller
     public function index()
     {
         //
-        return Cliente::all();
     }
 
     /**
@@ -23,8 +22,8 @@ class ClienteController extends Controller
     {
         //
         $input = $request->all();
-        $cliente = Cliente::create($input);
-        return $cliente;
+        $cuenta = Cuenta::create($input);
+        return $cuenta;
     }
 
     /**
@@ -33,14 +32,14 @@ class ClienteController extends Controller
     public function show(string $id)
     {
         //
-        $cliente = Cliente::find($id);
-        if ($cliente == null) {
+        $cuenta = Cuenta::find($id);
+        if ($cuenta == null) {
             return response()->json([
 
-                'mensaje' => 'No se encontro el cliente'
+                'mensaje' => 'No se encontro la cuenta'
             ], 404);
         }
-        return $cliente;
+        return $cuenta;
     }
 
     /**
@@ -50,15 +49,15 @@ class ClienteController extends Controller
     {
         //
         $input = $request->all();
-        $cliente = Cliente::find($id);
-        if ($cliente == null) {
+        $cuenta = Cuenta::find($id);
+        if ($cuenta == null) {
             return response()->json([
 
-                'mensaje' => 'No se encontro el cliente'
+                'mensaje' => 'No se encontro la cuenta'
             ], 404);
         }
-        $cliente->update($input);
-        return $cliente;
+        $cuenta->update($input);
+        return $cuenta;
     }
 
     /**
@@ -67,14 +66,14 @@ class ClienteController extends Controller
     public function destroy(string $id)
     {
         //
-        $cliente = Cliente::find($id);
-        if ($cliente == null) {
+        $cuenta = Cuenta::find($id);
+        if ($cuenta == null) {
             return response()->json([
 
-                'mensaje' => 'No se encontro el cliente'
+                'mensaje' => 'No se encontro la cuenta'
             ], 404);
         }
-        $cliente->delete();
-        return $cliente;
+        $cuenta->delete();
+        return $cuenta;
     }
 }

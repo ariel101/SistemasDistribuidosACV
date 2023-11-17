@@ -37,7 +37,7 @@ class CuentaController extends Controller
         if ($cuenta == null) {
             return response()->json([
 
-                'mensaje' => 'No se encontro el pronostico'
+                'mensaje' => 'No se encontro la cuenta'
             ], 404);
         }
         return $cuenta;
@@ -54,7 +54,7 @@ class CuentaController extends Controller
         if ($cuenta == null) {
             return response()->json([
 
-                'mensaje' => 'No se encontro el pronostico'
+                'mensaje' => 'No se encontro la cuenta'
             ], 404);
         }
         $cuenta->update($input);
@@ -71,7 +71,7 @@ class CuentaController extends Controller
         if ($cuenta == null) {
             return response()->json([
 
-                'mensaje' => 'No se encontro el pronostico'
+                'mensaje' => 'No se encontro la cuenta'
             ], 404);
         }
         $cuenta->delete();

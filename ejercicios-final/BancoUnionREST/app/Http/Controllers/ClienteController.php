@@ -13,7 +13,7 @@ class ClienteController extends Controller
     public function index()
     {
         //
-        return Cliente::all();
+        return  Cliente::all();
     }
 
     /**
