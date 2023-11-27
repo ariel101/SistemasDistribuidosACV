@@ -77,7 +77,7 @@ public class ServidorBancoCentral {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
                         double cotizacion = resultSet.getDouble("Cotizacion");
-                        return "exito-" + cotizacion;
+                        return "exito"+"-"+ cotizacion;
                     } else {
                         return "error-no se encontró la cotización";
                     }

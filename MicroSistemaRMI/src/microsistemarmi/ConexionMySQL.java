@@ -17,9 +17,9 @@ public class ConexionMySQL {
 
     public ConexionMySQL() {
         // Configuración de la conexión
-        String url = "jdbc:mysql://localhost:3306/rmi-db";
+        String url = "jdbc:mysql://localhost:3306/rmi_db";
         String usuario = "root";
-        String contrasena = "null";
+        String contrasena = "";
 
         try {
             // Establecer la conexión

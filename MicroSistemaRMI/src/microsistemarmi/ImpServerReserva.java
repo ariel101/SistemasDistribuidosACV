@@ -4,16 +4,22 @@
  */
 package microsistemarmi;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.SocketException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -67,10 +73,13 @@ public class ImpServerReserva extends UnicastRemoteObject implements IServidorRe
 
             // Enviamos la respuesta del servidor a la salida estandar
             String resBancoCentral = new String(respuesta.getData());
-            //System.out.println(respuestaSeduca);
-            double cot = Double.parseDouble(resBancoCentral);
+            String[] res = resBancoCentral.split("-");
+            String res1 = res[0];
+            String res2 = res[1];
+            System.out.println(resBancoCentral);
+            double cot = Double.parseDouble(res2);
             
-            Double precioDolares = precios.get(fechaCotizacion);
+            Double precioDolares = precios.get(fechaCoti);
             precioBolivianos = precioDolares * cot;
 
             // Cerramos el socket
@@ -87,7 +96,30 @@ public class ImpServerReserva extends UnicastRemoteObject implements IServidorRe
 
     @Override
     public String Reservar(Date inicio, Date fin, int idCliente, Date fechaCompra) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        String result = "";
+        double preciototal = Cotizar(inicio, fin, fechaCompra);
+        String monto = Double.toString(preciototal);
+        
+        String idclient = Integer.toString(idCliente);
+        
+        
+        int port = 5002;
+            try {
+                Socket client = new Socket("localhost", port);
+                PrintStream toServer = new PrintStream(client.getOutputStream());
+                BufferedReader fromServer = new BufferedReader(
+                        new InputStreamReader(client.getInputStream()));
+                toServer.println(idclient+":"+monto);
+                String resu = fromServer.readLine();
+                System.out.println("cadena devuelta es: " + resu);
+                result=resu;
+
+            } catch (IOException ex) {
+                Logger.getLogger(ImpServerReserva.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return result;
     }
     
 }
